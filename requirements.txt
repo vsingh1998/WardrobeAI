@@ -1,0 +1,9 @@
+###### Requirements without Version Specifiers ######`
+tensorflow
+matplotlib
+numpy
+pycopy-colorsys
+pillow
+opencv-python
+scipy
+webcolors
