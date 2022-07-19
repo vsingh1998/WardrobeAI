@@ -36,7 +36,7 @@ c) Next, type the following code in any Python environment:
 │   ├── images # A directory containing the dataset images
 │   └── styles.csv # A csv file containing the annotations for the images
 ├── models # A directory containing trained models and images of the model architectures
-├── models # A google drive folder which contains our trained models
+│   ├── models # A google drive folder which contains our trained models
 │   │   ├── model_category # A model that distinguishes tops, bottoms, and shoes
 │   │   ├── model_bottomwear # A model that recognizes the type, color, gender, season, and usage of bottoms
 │   │   ├── model_footwear # A model that recognizes the type, color, gender, season, and usage of shoes
