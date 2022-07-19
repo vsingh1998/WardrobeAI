@@ -67,30 +67,31 @@ b) Next, type the following code in any Python environment:
 c) Then you will see the app!
 
 
-<h2 id="7">7. Repo structure</h2>
+<h2 id="7">7. Repository structure</h2>
 
 ```
 .
-├── A special explanation for data cleaning and analysis(bias).ipynb   # A note that analyzes bias of the data set used in this project
-├── LICENSE   # The license
-├── README.md   # The readme file
-├── models   # This folder contains everything related to the models: data, models themselves, training code
-│   ├── data   # Data for training models from Kaggle
-│   ├── models   # A google drive folder which contains our trained models
-│   │   ├── model_sub   # A model that distinguishes tops, bottoms, and shoes
-│   │   ├── model_top   # A model that recognizes the type, color, gender, season, and usage of tops
-│   │   ├── model_bottom   # A model that recognizes the type, color, gender, season, and usage of bottoms
-│   │   └── model_shoes   # A model that recognizes the type, color, gender, season, and usage of shoes
-│   ├── train_module.py   # A module which contains functions we used to train the models
-│   └── training.py   # Steps that we train the models
-├── pictures   # Pictures used in this repo
-│   ├── 51109bb074d95c059f716e48786568f.jpg   
-│   ├── IMG_0159.jpg   
-│   ├── top_question.png   
-│   └── tutorial.png   
-├── proposal.md   # Our original proposal
-├── py   # All you need to run the app
-│   ├── recognition_module.py   # A module that contains functions and classes to generate the GUI
-│   └── ui_module.py   # A module that contains the function to run the app
-└── requirements.txt # The packages
+├── data
+│   ├── images # A directory containing the dataset images
+│   └── styles.csv # A csv file containing the annotations for the images
+├── models # A directory containing trained models and images of the model architectures
+├── models # A google drive folder which contains our trained models
+│   │   ├── model_category # A model that distinguishes tops, bottoms, and shoes
+│   │   ├── model_bottomwear # A model that recognizes the type, color, gender, season, and usage of bottoms
+│   │   ├── model_footwear # A model that recognizes the type, color, gender, season, and usage of shoes
+│   │   └── model_topwear # A model that recognizes the type, color, gender, season, and usage of tops
+│   ├── model_bottomwear.png # Architecture of the model_bottomwear
+│   ├── model_category.png # Architecture of the model_category
+│   ├── model_footwear.png # Architecture of the model_footwear
+│   └── model_topwear.png # Architecture of the model_topwear
+├── ui_images # A directory containing images used for the ui_module
+├── exploratory_data_analysis.ipynb # A notebook containing the analysis of our dataset and corresponding inferences
+├── model_category.ipynb # A notebook containing the training of the model_category
+├── models_subcategory.ipynb # A notebook containing the training of the model_bottomwear, model_footwear, and model_topwear
+├── recognition_module.py # A module that contains functions and classes to generate the GUI#
+├── ui_module.py # A module to run the application
+├── utils.py # A module containing helping functions for model training
+├── README.md # The Readme file
+└── requirements.txt # The packages used
+
 ```
