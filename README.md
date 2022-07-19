@@ -17,14 +17,15 @@ Could this be a task our mobiles can do as well? We set out exploring this. Our 
 
 To start the app: 
 
-a) First download trained models from here to the models folder. 
+a) Check whether saved models are present inside the models/ directory. There should be in total 4 models, one inside each subdirectory for category, topwear, bottomwear and footwear. 
 
-b) Install all the packages:
+b) Check whether all dependencies are installed using
+
 ```
    pip install -r requirements.txt
 ```
 
-c) Next, type the following code in any Python environment:
+c) :aunch the system UI using
 ```
    python3 ui_module.py   
 ```   
