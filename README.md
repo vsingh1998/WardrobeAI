@@ -10,7 +10,7 @@
 <h2 id="1">1. Intro</h2> Do you sometimes (definitely not during the final exams week) stand in front of your closet and think deeply about "what should I wear today?!", "how do I pair up clothes today to make me more fashionable?!". Everyone defines fashion personally, but there are always some methods and ways that are fashionable for most people. What a person wears can also clearly show how that person's character and taste are. People who don't have time to think about this may need to use an app to improve their sense of fashion, such as an outfit recommendation app. In general, we have implemented such a local app which can store photo of clothes owned by users and recommend what to wear (top, bottom, and shoes) today.
 
 <br>
-<h2 id="2">6. Start the app</h2>
+<h2 id="2">2. Start the app</h2>
 
 To start the app: 
 
@@ -28,7 +28,7 @@ c) Next, type the following code in any Python environment:
 
 
 
-<h2 id="3">7. Repository structure</h2>
+<h2 id="3">3. Repository structure</h2>
 
 ```
 .
