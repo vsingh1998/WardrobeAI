@@ -7,7 +7,10 @@
 [3. Repo structure](#3)
 
 
-<h2 id="1">1. Intro</h2> Do you sometimes (definitely not during the final exams week) stand in front of your closet and think deeply about "what should I wear today?!", "how do I pair up clothes today to make me more fashionable?!". Everyone defines fashion personally, but there are always some methods and ways that are fashionable for most people. What a person wears can also clearly show how that person's character and taste are. People who don't have time to think about this may need to use an app to improve their sense of fashion, such as an outfit recommendation app. In general, we have implemented such a local app which can store photo of clothes owned by users and recommend what to wear (top, bottom, and shoes) today.
+<h2 id="1">1. Intro</h2> Dread. Dilemma. Distraction. Picking out a daily outfit from your wardrobe often involves these emotions. Given the abundance of clothes in our wardrobes, picking an outfit should be simpler and quicker. 
+
+Could this be a task our mobiles can do as well? We set out exploring this. Our idea is to apply computer vision based deep learning techniques to recommend outfits. We develop a local app that can be accessed on our systems which identifies outfits as a combination of 3 subcategories - Topwear, Bottomwear and Footwear. Furthermore, we give you the outfits based on the season of the year. You may choose to look ahead for a specific time in the future to plan your outfit in advance.
+
 
 <br>
 <h2 id="2">2. Start the app</h2>
