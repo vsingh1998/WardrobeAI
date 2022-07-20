@@ -20,6 +20,7 @@ class Ui_MainWindow(object):
         self.top = []
         self.bottom = []
         self.shoes = []
+        self.season = None
         
         
     def ALL_PREDICT(self):
@@ -131,7 +132,7 @@ class Ui_MainWindow(object):
         """
         Generate outfit based on month using generate button
         """
-        top_right_season = [i for i in self.top if i[3] == toseason ]
+        top_right_season = [i for i in self.top if i[3] == self.season ]
         if top_right_season != []:
             ad_top = top_right_season[np.random.randint(len(top_right_season))]
         else:
@@ -141,7 +142,7 @@ class Ui_MainWindow(object):
         if helper_bot==[]:
             ad_bot = self.bottom[np.random.randint(len(self.bottom))]
         else:
-            bot_right_season = [i for i in helper_bot if i[3] == toseason]
+            bot_right_season = [i for i in helper_bot if i[3] == self.season]
             
             if bot_right_season != []:
                 ad_bot = bot_right_season[np.random.randint(len(bot_right_season))]
@@ -150,7 +151,7 @@ class Ui_MainWindow(object):
         if helper_sho==[]:
             ad_sho = self.shoes[np.random.randint(len(self.shoes))]
         else:
-            sho_right_season = [i for i in helper_sho if i[3] == toseason]
+            sho_right_season = [i for i in helper_sho if i[3] == self.season]
             
             if sho_right_season != []:
                 ad_sho = sho_right_season[np.random.randint(len(sho_right_season))]
@@ -163,10 +164,18 @@ class Ui_MainWindow(object):
 
     
 #####################################################################################
-    def index_changed(self, index):
-        self.month_value = index
-        print("Index changed", index)
-        return month_value
+    def index_changed(self, ind):
+        to_month = ind
+        if to_month in [2,3,4]:
+            toseason = "Spring"
+        elif tomonth in [5,6,7]:
+            toseason = "Summer"
+        elif tomonth in [8,9,10]:
+            toseason = "Fall"
+        else:
+            toseason = "Winter"
+        self.season = toseason
+       
         
         
 #####################################################################################
