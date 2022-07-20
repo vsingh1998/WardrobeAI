@@ -1,20 +1,21 @@
-#for GUI
+#This file contains the user interface code. 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *                                  
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-
 from recognition_module import *
+
 import time
+#define a global variable to collect value 
 month_value = 0
 
 class Ui_MainWindow(object):
     """
-    This class to to generate a GUI (graphical user interface)
+   Class to generate UI and its elements
     """
     def __init__(self):
         """
-        initil them three in order to add clothes later.
+        Initialize lists in order to to display top, bottom and shoes
         """
         self.top = []
         self.bottom = []
@@ -23,7 +24,7 @@ class Ui_MainWindow(object):
         
     def ALL_PREDICT(self):
         """
-        User click ADD botton to call this function, after getting a path of a photo, this function do prediction by the models and show the result in the GUI.
+        Predict function to add an images and classify to top, bottom and shoes. Generate the outfit recommendation
         """
         _translate = QtCore.QCoreApplication.translate
         directory1 = QFileDialog.getOpenFileName(None, "Select file", "H:/")
@@ -48,7 +49,7 @@ class Ui_MainWindow(object):
             
     def TOP_LIST_EDIT(self):
             """
-            User click EDIT botton to call this function to edit a prediction result.
+           Top edit button: To edit outfit name 
             """
             
             selected_items = self.TOP_LIST.selectedItems()
@@ -61,7 +62,7 @@ class Ui_MainWindow(object):
                
     def TOP_LIST_DEL(self):
             """
-            User click DELETE botton to call this function to delete a photo with prediction result.
+            Top remove button: To remove outfit from the list 
             """
             selected_items = self.TOP_LIST.selectedItems()
             for i in selected_items:
@@ -76,7 +77,7 @@ class Ui_MainWindow(object):
     #########################################################################################          
     def BOTTOM_LIST_EDIT(self):
             """
-            User click EDIT botton to call this function to edit a prediction result.
+            Bottom edit button: To edit outfit name
             """
             selected_items = self.BOTTOM_LIST.selectedItems()
             text, okPressed = QtWidgets.QInputDialog.getText(self.AddBottomButton, "EDIT","Please Edit This Bottom:", QtWidgets.QLineEdit.Normal, selected_items[0].text())
@@ -87,7 +88,7 @@ class Ui_MainWindow(object):
                 self.BOTTOM_LIST.addItem(item)   
     def BOTTOM_LIST_DEL(self):
             """
-            User click DELETE botton to call this function to delete a photo with prediction result.
+            Bottom remove button: To remove outfit from the list 
             """
             selected_items = self.BOTTOM_LIST.selectedItems()
             for i in selected_items:
@@ -98,11 +99,12 @@ class Ui_MainWindow(object):
             for i in self.bottom:
                 if(i[-1] == path):
                     self.bottom.remove(i)
-            
+                    
+    ###########################################################################################         
            
     def SHOE_LIST_EDIT(self):
             """
-            User click EDIT botton to call this function to edit a prediction result.
+            Shoes edit button: To edit outfit name
             """
             selected_items = self.SHOE_LIST.selectedItems()
             text, okPressed = QtWidgets.QInputDialog.getText(self.AddShoeButton, "EDIT","Please Edit This Shoes:", QtWidgets.QLineEdit.Normal, selected_items[0].text())
@@ -113,7 +115,7 @@ class Ui_MainWindow(object):
                 self.SHOE_LIST.addItem(item)   
     def SHOE_LIST_DEL(self):
             """
-            User click DELETE botton to call this function to delete a photo with prediction result.
+            Shoes remove button: To remove outfit from the list 
             """
             selected_items = self.SHOE_LIST.selectedItems()
             for i in selected_items:
@@ -127,7 +129,7 @@ class Ui_MainWindow(object):
     ######################################################################################################
     def Generate(self):
         """
-        User click Generate today's Outfit Recommendation botton to call this function to get a recommendation.
+        Generate outfit based on month using generate button
         """
         top_right_season = [i for i in self.top if i[3] == toseason ]
         if top_right_season != []:
@@ -159,7 +161,7 @@ class Ui_MainWindow(object):
         self.listWidget_2.setPixmap(QtGui.QPixmap(ad_bot[-1]).scaled(281,300))
         self.listWidget_3.setPixmap(QtGui.QPixmap(ad_sho[-1]).scaled(281,300))
 
-    # The above is what functions the GUI should have
+    
 #####################################################################################
     def index_changed(self, index):
         self.month_value = index
@@ -169,7 +171,7 @@ class Ui_MainWindow(object):
         
 #####################################################################################
 
-    # The below are the appearance settings of the GUI
+    # UI elements setup
     
     def setupUi(self, MainWindow):
         """
@@ -177,10 +179,12 @@ class Ui_MainWindow(object):
         """
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(880, 669)
+        MainWindow.setWindowIcon(QtGui.QIcon('ui_images/icon.jpg'))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         
 #####################################################################################
+        #Widgets for Tops
         
         self.TOP_LIST = QtWidgets.QListWidget(self.centralwidget)
         self.TOP_LIST.setGeometry(QtCore.QRect(10, 30, 281, 181))
@@ -197,6 +201,7 @@ class Ui_MainWindow(object):
         self.DeleteTopButton.setObjectName("DeleteTopButton")
         
 #####################################################################################
+        # Widgets for bottom
         
         self.AddBottomButton = QtWidgets.QPushButton(self.centralwidget)
         self.AddBottomButton.setGeometry(QtCore.QRect(300, 210, 141, 41))
@@ -209,6 +214,7 @@ class Ui_MainWindow(object):
         self.DeleteBottomButton.setObjectName("DeleteBottomButton")
         
 #####################################################################################
+        # Widgets for shoes
         
         self.AddShoeButton = QtWidgets.QPushButton(self.centralwidget)
         self.AddShoeButton.setGeometry(QtCore.QRect(590, 210, 141, 41))
@@ -221,6 +227,7 @@ class Ui_MainWindow(object):
         self.DeleteShoeButton.setObjectName("DeleteShoeButton")
         
 #####################################################################################
+        # Widgets for generate button
         
         self.GenerateButton = QtWidgets.QPushButton(self.centralwidget)
         self.GenerateButton.setGeometry(QtCore.QRect(660, 270, 141, 41))
@@ -237,6 +244,7 @@ class Ui_MainWindow(object):
         
 #####################################################################################
         
+        
         self.TopLabel = QtWidgets.QLabel(self.centralwidget)
         self.TopLabel.setGeometry(QtCore.QRect(140, 10, 60, 16))
         self.TopLabel.setTextFormat(QtCore.Qt.RichText)
@@ -249,6 +257,7 @@ class Ui_MainWindow(object):
         self.label_2.setObjectName("label_2")
         
 #####################################################################################
+        # Widgets for base display
         
         self.listWidget_1 = QtWidgets.QLabel(self.centralwidget)
         self.listWidget_1.setGeometry(QtCore.QRect(10, 370, 281, 300))
@@ -264,6 +273,7 @@ class Ui_MainWindow(object):
         self.listWidget_3.setPixmap(QtGui.QPixmap("ui_images/shoes.jpg").scaled(281,300))
         
 #####################################################################################        
+        # MainWindow widget
       
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -314,19 +324,19 @@ class Ui_MainWindow(object):
 def main():
     
 
-    # This part is to run the GUI we defined above and for some basic settings about the GUI, such as color, style, etc.
+    # Main function to run the GUI we defined above and for some basic settings about the GUI, such as color, style, etc.
 
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    splash = QSplashScreen(QtGui.QPixmap("ui_images/bg_closet.jpg"))
+    splash = QSplashScreen(QtGui.QPixmap("ui_images/bg_closet.png"))
     #font = QFont(splash.font())
     #font.setPointSize(font.pointSize() + 20)
     #font.setWeight(QFont.Bold)
     #splash.setFont(font)
     #splash.showMessage("Welcome to WardrobeAI!", QtCore.Qt.AlignCenter, QtCore.Qt.black)
     splash.show()
-    QTimer.singleShot(5000,splash.close)
-    time.sleep(5)
+    QTimer.singleShot(9000,splash.close)
+    time.sleep(8)
     QtWidgets.QApplication.setStyle(QtWidgets.QStyleFactory.create('fusion'))
     MainWindow = QtWidgets.QMainWindow()
     MainWindow.setStyleSheet("color: black;"
