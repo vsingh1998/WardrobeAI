@@ -319,20 +319,20 @@ def main():
     import sys
     app = QtWidgets.QApplication(sys.argv)
     splash = QSplashScreen(QtGui.QPixmap("ui_images/bg_closet.jpg"))
-    font = QFont(splash.font())
-    font.setPointSize(font.pointSize() + 20)
-    font.setWeight(QFont.Bold)
-    splash.setFont(font)
-    splash.showMessage("Welcome to WardrobeAI!", QtCore.Qt.AlignCenter, QtCore.Qt.black)
+    #font = QFont(splash.font())
+    #font.setPointSize(font.pointSize() + 20)
+    #font.setWeight(QFont.Bold)
+    #splash.setFont(font)
+    #splash.showMessage("Welcome to WardrobeAI!", QtCore.Qt.AlignCenter, QtCore.Qt.black)
     splash.show()
-    QTimer.singleShot(1000,splash.close)
-    time.sleep(3)
+    QTimer.singleShot(5000,splash.close)
+    time.sleep(5)
     QtWidgets.QApplication.setStyle(QtWidgets.QStyleFactory.create('fusion'))
     MainWindow = QtWidgets.QMainWindow()
     MainWindow.setStyleSheet("color: black;"
                              "selection-background-color: blue;"
                              "selection-color: white;"
-                             "background-color: lightblue;")
+                             "background-color: #AA96B7;")
 
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
