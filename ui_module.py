@@ -6,8 +6,7 @@ from PyQt5.QtGui import *
 from recognition_module import *
 
 import time
-#define a global variable to collect value 
-month_value = 0
+
 
 class Ui_MainWindow(object):
     """
@@ -168,9 +167,9 @@ class Ui_MainWindow(object):
         to_month = ind
         if to_month in [2,3,4]:
             toseason = "Spring"
-        elif tomonth in [5,6,7]:
+        elif to_month in [5,6,7]:
             toseason = "Summer"
-        elif tomonth in [8,9,10]:
+        elif to_month in [8,9,10]:
             toseason = "Fall"
         else:
             toseason = "Winter"
@@ -338,14 +337,9 @@ def main():
     import sys
     app = QtWidgets.QApplication(sys.argv)
     splash = QSplashScreen(QtGui.QPixmap("ui_images/bg_closet.png"))
-    #font = QFont(splash.font())
-    #font.setPointSize(font.pointSize() + 20)
-    #font.setWeight(QFont.Bold)
-    #splash.setFont(font)
-    #splash.showMessage("Welcome to WardrobeAI!", QtCore.Qt.AlignCenter, QtCore.Qt.black)
     splash.show()
-    QTimer.singleShot(9000,splash.close)
-    time.sleep(8)
+    QTimer.singleShot(1000,splash.close)
+    time.sleep(3)
     QtWidgets.QApplication.setStyle(QtWidgets.QStyleFactory.create('fusion'))
     MainWindow = QtWidgets.QMainWindow()
     MainWindow.setStyleSheet("color: black;"
