@@ -17,7 +17,7 @@ Could this be a task our mobiles can do as well? We set out exploring this. Our 
 
 To start the app: 
 
-a) Check whether saved models are present inside the models/ directory. There should be in total 4 models, one inside each subdirectory for category, topwear, bottomwear and footwear. 
+a) Check whether saved models are present inside the models/models/ directory. There should be in total 4 models, one inside each subdirectory for category, topwear, bottomwear and footwear. You can find the trained models [here](https://drive.google.com/drive/folders/174YFilljTNwZt9m9JAKrjbXj95apQ67p?usp=sharing).
 
 b) Check whether all dependencies are installed using
 
