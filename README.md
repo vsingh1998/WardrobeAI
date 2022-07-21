@@ -1,15 +1,17 @@
 # Contents
 
-[1. Intro](#1)
+[1. Introduction](#1)
 
 [2. Start the app](#2)
 
-[3. Repo structure](#3)
+[3. Repository structure](#3)
 
 
 <h2 id="1">1. Intro</h2> Dread. Dilemma. Distraction. Picking out a daily outfit from your wardrobe often involves these emotions. Given the abundance of clothes in our wardrobes, picking an outfit should be simpler and quicker. 
 
 Could this be a task our mobiles can do as well? We set out exploring this. Our idea is to apply computer vision based deep learning techniques to recommend outfits. We develop a local app that can be accessed on our systems which identifies outfits as a combination of 3 subcategories - Topwear, Bottomwear and Footwear. Furthermore, we give you the outfits based on the season of the year. You may choose to look ahead for a specific time in the future to plan your outfit in advance.
+
+The dataset used for our project is **Fashion Product Images (small)** which you can find [here](https://drive.google.com/file/d/1AnM_P5axxdgPO9f-A1ZnkcrkAnh4ZG72/view?usp=sharing). The dataset contains training images in the ```images``` folder, a ```styles.csv``` file, and test images in the ```test``` folder.
 
 
 <br>
