@@ -60,6 +60,7 @@ c) :aunch the system UI using
 ├── recognition_module.py # A module that contains functions and classes to generate the GUI#
 ├── ui_module.py # A module to run the application
 ├── utils.py # A module containing helping functions for model training
+├── WardrobeAI_report.pdf # Project report
 ├── README.md # The Readme file
 └── requirements.txt # The packages used
 
