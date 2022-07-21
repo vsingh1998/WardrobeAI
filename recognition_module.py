@@ -2,8 +2,6 @@
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.preprocessing.image import ImageDataGenerator 
 from tensorflow.keras.preprocessing import image
-from ui_module import month_value
-# import ui_module
 
 #for read and show images
 import matplotlib.pyplot as plt
@@ -29,7 +27,6 @@ from webcolors import (
    
     
 # load pre-trained models
-# please change them to your local path when load
 sub_model = tf.keras.models.load_model('models/models/model_category/')
 top_model = tf.keras.models.load_model('models/models/model_topwear/')
 bottom_model = tf.keras.models.load_model('models/models/model_bottomwear/')
@@ -296,19 +293,3 @@ def recommend_color_top(top_color_group, combotype):
             shoes_color_group = 6
             
     return (bottom_color_group , shoes_color_group)
-
-
-# Since one of the factors in our clothes recommendation is the season, 
-# we extract the current real season and match it with all the clothes stored in the app.
-# This means that we only recommend clothes that are suitable for the current season
-#from datetime import date
-#todays_date = date.today()
-tomonth = month_value
-if tomonth in [2,3,4]:
-    toseason = "Spring"
-elif tomonth in [5,6,7]:
-    toseason = "Summer"
-elif tomonth in [8,9,10]:
-    toseason = "Fall"
-else:
-    toseason = "Winter"
