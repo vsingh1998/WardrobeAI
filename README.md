@@ -11,7 +11,7 @@
 
 Could this be a task our mobiles can do as well? We set out exploring this. Our idea is to apply computer vision based deep learning techniques to recommend outfits. We develop a local app that can be accessed on our systems which identifies outfits as a combination of 3 subcategories - Topwear, Bottomwear and Footwear. Furthermore, we give you the outfits based on the season of the year. You may choose to look ahead for a specific time in the future to plan your outfit in advance.
 
-The dataset used for our project is **Fashion Product Images (small)** which you can find [here](https://drive.google.com/file/d/1AnM_P5axxdgPO9f-A1ZnkcrkAnh4ZG72/view?usp=sharing). The dataset contains training images in the ```images``` folder, a ```styles.csv``` file, and test images in the ```test``` folder.
+The dataset used for our project is ```Fashion Product Images (small)``` which you can find [here](https://drive.google.com/file/d/1AnM_P5axxdgPO9f-A1ZnkcrkAnh4ZG72/view?usp=sharing). The dataset contains training images in the ```images``` folder, a ```styles.csv``` file, and test images in the ```test``` folder.
 
 
 <br>
