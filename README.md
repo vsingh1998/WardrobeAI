@@ -52,7 +52,9 @@ c) :aunch the system UI using
 ├── ui_images # A directory containing images used for the ui_module
 ├── exploratory_data_analysis.ipynb # A notebook containing the analysis of our dataset and corresponding inferences
 ├── model_category.ipynb # A notebook containing the training of the model_category
+├── model_category_hyperparam.ipynb # A notebook containing code for hyperparameter tuning for model_category
 ├── models_subcategory.ipynb # A notebook containing the training of the model_bottomwear, model_footwear, and model_topwear
+├── models_subcategory_hyperparam.ipynb # A notebook containing code for the hyperparameter tuning for subcategory models
 ├── recognition_module.py # A module that contains functions and classes to generate the GUI#
 ├── ui_module.py # A module to run the application
 ├── utils.py # A module containing helping functions for model training
