@@ -26,14 +26,14 @@ from webcolors import (
 )
    
     
-# load pre-trained models
+# load saved models
 sub_model = tf.keras.models.load_model('models/models/model_category/')
 top_model = tf.keras.models.load_model('models/models/model_topwear/')
 bottom_model = tf.keras.models.load_model('models/models/model_bottomwear/')
 foot_model = tf.keras.models.load_model('models/models/model_footwear/')
 
 
-# all output possibilities of the model for subsequent matching
+# List of all possible topwear, bottomwear, footwear the model would show. Used by cloth_classification()
 sub_list = ["bottom","foot","top"]
 top_list = [['Belts', 'Blazers', 'Dresses', 'Dupatta', 'Jackets', 'Kurtas',
        'Kurtis', 'Lehenga Choli', 'Nehru Jackets', 'Rain Jacket',
@@ -68,10 +68,12 @@ foot_list = [['Casual Shoes', 'Flats', 'Flip Flops', 'Formal Shoes', 'Heels',
 def rgb_to_css3(rgb_tuple):
     """
     This function converts the rgb names to their corresponding name
-    in css3 format. It is a helper function to the below defined functions.
+    in css3 format.
     
     Input: rgb tuple
     Output: css3 name
+
+    Refered from: https://medium.com/codex/rgb-to-color-names-in-python-the-robust-way-ec4a9d97a01f
     """
     # a dictionary of all the hex and their respective names in css3
     css3_db = CSS3_HEX_TO_NAMES
@@ -87,11 +89,12 @@ def rgb_to_css3(rgb_tuple):
 
 def recognize_color(image):
     """
-    This function recognizes the color of the input image.
+    This function recognizes the dominant color of the input image.
+    Refered from : https://gist.github.com/nathforge/658336
     
-    Input: an image
-    Output: color name
+ 
     """
+
     max_score = 0.0001
     dominant_color = None
     for count,(r,g,b) in image.getcolors(image.size[0]*image.size[1]):
@@ -124,7 +127,7 @@ def classify_color(single_path):
 ####################################
 def prediction_helper(train_images, my_model, lelist):
     """
-    This is a helper function for prediction from the models
+    Helper function to store prediction from the models
     Input: image, one of three sub-model, a encoder list
     Output: list
     """
@@ -151,9 +154,9 @@ def cloth_classification(single_path):
     This function takes the path of an input image, reshape it, and then perform classification.
     
     Input: path of an image
-    Output:tuple including subtype(for being send to a correct sub-model), 
-                                     info(a string having all info of a clothes), 
-                                     res(a list having all info of a clothes)
+    Output:tuple of (subtype : (prediction from model_category), 
+                                     res(a string having all predictions for the given image), 
+                                     res_str(the information to be displayed onto the UI))
     """
     
     # Our model only applies to dataframes. 
@@ -190,39 +193,46 @@ def cloth_classification(single_path):
 
 def recommend_color_top(top_color_group, combotype):
     """
-    This function recommend color base on a seed color by a given angle in a colorwheel.
+    This function sets rules for recommedning rest of the outfit given colour of the topwear.
+    The recommendation is done by seeding random colours and comparing them versus the basecolour identified by our network.
+
     
     Input: color and a angle: moderate_combo == 90
                               similar_combo == 60
                               close_combo == 30
                               same_combo == 0
-    Output: list of two color
+    Output: list of recommended colours for bottomwear and footwear
     """
     
     co = int(combotype/30)
     
     
+    #colour groups : Black = 12, White = 13, Grey = 14, Multicoloured = 15
+
     #if top color is multi
     if top_color_group == 15: #if top color is multi
-        bottom_color_group = random.choice([12,13,14])
-        if bottom_color_group==12: #if bottom color is black
-            shoes_color_group = 13 #then set shoes to be white
+        bottom_color_group = random.choice([12,13,14]) #black, white,grey go well with multicoloured tops
+         
+        # Setting rules for bottomwear-footwear compatibility from daily life combinations
+        if bottom_color_group==12: #black bottom
+            shoes_color_group = 13 #white footwear
             
-        elif bottom_color_group==13:                      #if bottom color is white
-            shoes_color_group = random.choice([12,13,14]) #then set shoes to be black or white or grey
-            
-        else:                      #if bottom color is grey
-            shoes_color_group = random.choice([12,13])    #then set shoes to be black or white
+        elif bottom_color_group==13:                      #bottom = white
+            shoes_color_group = random.choice([12,13,14]) #footwear = Black/White/Grey 
+
+        else:                     
+            shoes_color_group = random.choice([12,13])    #footwear =  black / white (Conventional choice!)
     
     
-    #if top color is mono
+    # monochromatic top_colour
     elif top_color_group == 12 or top_color_group == 13 or top_color_group == 14:
         if top_color_group == 12:
-            bottom_color_group = random.choice([12,13])
+            bottom_color_group = random.choice([12,13]) # Black and white bottoms both go well with black topwear
             if bottom_color_group==12:
                 shoes_color_group = 13
             else:
                 shoes_color_group=random.choice([12,13])
+
         elif top_color_group == 13:
             bottom_color_group = random.choice([12,13])
             if bottom_color_group==12:
@@ -232,64 +242,25 @@ def recommend_color_top(top_color_group, combotype):
         else:
             bottom_color_group=random.choice([12,13])
             shoes_color_group=random.choice([12,13])  
+    
+    # If topwear not monochromatic/multi, then choose within a defined window from the colourwheel. Window range defined by combotype
     else: 
         bottom_color_group = random.choice([top_color_group-co, top_color_group+co])
+        
         if bottom_color_group==top_color_group-co:
             shoes_color_group = top_color_group+co
         else:
             shoes_color_group = top_color_group-co
             
-        #In fact, we can simplify this part of the code
-        if bottom_color_group == 12:
-            bottom_color_group = 0
-        if bottom_color_group == 13:
-            bottom_color_group = 1
-        if bottom_color_group == 14:
-            bottom_color_group = 2 
-        if bottom_color_group == 15:
-            bottom_color_group = 3
-        if bottom_color_group == 16:
-            bottom_color_group = 4
-        if bottom_color_group == 17:
-            bottom_color_group = 5
+        if bottom_color_group <0:
+            bottom_color_group = 12 - bottom_color_group
+
             
-        if shoes_color_group == 12:
-            shoes_color_group = 0
-        if shoes_color_group == 13:
-            shoes_color_group = 1
-        if shoes_color_group == 14:
-            shoes_color_group = 2
-        if shoes_color_group == 15:
-            shoes_color_group = 3
-        if shoes_color_group == 16:
-            shoes_color_group = 4
-        if shoes_color_group == 17:
-            shoes_color_group = 5
-        
-        if bottom_color_group == -1:
-            bottom_color_group = 11
-        if bottom_color_group == -2:
-            bottom_color_group = 10
-        if bottom_color_group == -3:
-            bottom_color_group = 9 
-        if bottom_color_group == -4:
-            bottom_color_group = 8
-        if bottom_color_group == -5:
-            bottom_color_group = 7
-        if bottom_color_group == -6:
-            bottom_color_group = 6
-            
-        if shoes_color_group == -1:
-            shoes_color_group = 11
-        if shoes_color_group == -2:
-            shoes_color_group = 10
-        if shoes_color_group == -3:
-            shoes_color_group = 9
-        if shoes_color_group == -4:
-            shoes_color_group = 8
-        if shoes_color_group == -5:
-            shoes_color_group = 7
-        if shoes_color_group == -6:
-            shoes_color_group = 6
+        if shoes_color_group <0:
+            shoes_color_group = 12 - shoes_color_group
+
+        bottom_color_group = bottom_color_group % 12
+        shoes_color_group = shoes_color_group % 12
+
             
     return (bottom_color_group , shoes_color_group)
